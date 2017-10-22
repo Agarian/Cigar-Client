@@ -18,9 +18,7 @@
 	<script src="assets/js/vector.js"></script>
 	<script src="assets/js/main_out.js"></script>
 	<script>
-		/* global $*/
 		window.addEventListener('keydown', keydown);
-		//window.addEventListener('keyup');
 		function keydown(event) {
 			if (event.keyCode == 16) { // SHIFT
 				for (var shift = 0; shift < 5; shift++) setTimeout(split, shift * 50);
@@ -40,7 +38,7 @@
 			$("body").trigger($.Event("keyup", {
 				keyCode: 32
 			}));
-		} // <input class="form-control" id="skinURL" placeholder="Insert skin URL" />
+		}
 	</script>
 </head>
 <body>
@@ -57,7 +55,6 @@
                         <option value="127.0.0.1:4444">Solo Server 4444</option>
                         <option value="127.0.0.1:8080">Solo Server 8080</option>
                     </select>
-					
                     <br clear="both" /> </div>
 				<div class="form-group"> <button type="submit" id="play-btn" onclick="setNick(document.getElementById('nick').value); return false;" class="btn btn-play btn-primary btn-needs-server">Play</button> <button onclick="$('#settings, #instructions').toggle(); return false;" class="btn btn-info btn-settings" id="settings-btn"><i class="glyphicon glyphicon-cog"></i></button> <br clear="both" /> </div>
 				<div id="settings" class="checkbox" style="display:none;">
