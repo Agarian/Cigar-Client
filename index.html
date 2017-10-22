@@ -53,9 +53,9 @@
 				<div class="form-group"> <input id="nick" class="form-control" placeholder="Nick" maxlength="30" />
 				<select id="gamemode" class="form-control" onchange="setServer($(this).val())" required>
                         <option selected disabled>Select:</option>
-                        <option value="ogar-agarian.c9users.io:8080">Ogar</option>
-                        <option value="multiogar-agarian.c9users.io:8081">MultiOgar-Edited</option>
-                        <option value="ogarunlimited-agarian.c9users.io:8080">Ogar-Unlimited</option>
+                        <option value="127.0.0.1:443">Solo Server 443</option>
+                        <option value="127.0.0.1:4444">Solo Server 4444</option>
+                        <option value="127.0.0.1:8080">Solo Server 8080</option>
                     </select>
 					
                     <br clear="both" /> </div>
@@ -79,7 +79,7 @@
                         <label><input type="checkbox" onchange="setMapGrid($(this).is(':checked'));" checked> Show Map Grid</label>
                         <label><input type="checkbox" onchange="setNameShadows($(this).is(':checked'));" checked> Name Shadows</label>
                         <hr>
-                        <script>/*<p><b>NOTE: </b>You do not need to include the # in the color hex.</p>*/</script>
+                        <script>/*NOTE: </b>You do not need to include the # in the color hex.*/</script>
                         <table>
                         	<tr>
                         		<td><label>Map Border Color</label>
