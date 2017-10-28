@@ -1,7 +1,6 @@
 (function(wHandle, wjQuery) {
     /*global navigator, Image, $*/
-    // That IP doesn't actually connect to anything, but meh.
-    var CONNECTION_URL = "multiogar-agarian.c9users.io:8080"; // Default Connection
+    var CONNECTION_URL = ""; // Default Connection
     var SKIN_URL = "./skins/"; // Skin Directory
     wHandle.setServer = function(arg) {
         if (arg != gameMode) {
