@@ -1593,15 +1593,19 @@
                 }
                 if (showCellBorder) {
                     if (!b || 20 < this.size) {
-                        ctx.strokeStyle = '#000';
-                        ctx.globalAlpha *= .1;
-                        ctx.lineWidth = 5;
+                        var color = String($("#cellBorderColor").val());
+                        ctx.strokeStyle = '#' + color;
+                        if (color == '000000' || color == '000') alpha = .12;
+                        else var alpha = 1;
+                        ctx.globalAlpha *= alpha;
+                        var size = String($("#cellBorderSize").val());
+                        ctx.lineWidth = size;
                         ctx.stroke();
                     }
                 } else {
                     if ((showColor || 15 < this.size) && !b) {
                         ctx.strokeStyle = '#000';
-                        ctx.globalAlpha *= .1;
+                        ctx.globalAlpha *= .12;
                         ctx.stroke();
                     }
                 }
