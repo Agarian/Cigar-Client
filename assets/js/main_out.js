@@ -1533,7 +1533,7 @@
                 }
                 if (b) {
                     ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size/* + (20 < this.size ? 0 : 5)*/, 0, 2 * Math.PI, 0);
+                    ctx.arc(this.x, this.y, this.size - (20 < this.size ? 0 : 5), 0, 2 * Math.PI, 0);
                 } else {
                     this.movePoints();
                     ctx.beginPath();
