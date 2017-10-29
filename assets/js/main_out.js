@@ -1190,7 +1190,7 @@
         rightPos = 1E4,
         bottomPos = 1E4,
         viewZoom = 1,
-        owner = 0,
+        ua = 0,
         userScore = 0,
         /* v settings v */
         showSkin = 1,
