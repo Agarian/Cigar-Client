@@ -1396,7 +1396,7 @@
         },
         setName: function(a) {
             this.name = a;
-            if (null == this.nameCache) { // Name text color
+            if (null == this.nameCache) {
                 var nameColor = String($("#nameColor").val());
                 this.nameCache = new UText(this.getNameSize(), "#" + nameColor, 1, "#000");
                 this.nameCache.setValue(this.name);
@@ -1535,7 +1535,7 @@
                 }
                 if (b) {
                     ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size - (20 < this.size ? 0 : 5), 0, 2 * Math.PI, 0);
+                    ctx.arc(this.x, this.y, this.size - (20 < this.size || !showCellBorder ? 0 : 5), 0, 2 * Math.PI, 0);
                 } else {
                     this.movePoints();
                     ctx.beginPath();
@@ -1558,13 +1558,7 @@
                     if (-1 != knownNameDict.indexOf(skinName)) {
                         if (!skins.hasOwnProperty(skinName)) {
                             skins = new Image;
-                            //var customSkinURL = String($("#skinURL").val());
-                            //if (!customSkinURL) {
-                                skins.src = SKIN_URL + skinName + '.png'/*('.png'|'.jpg')*/;
-                            //} else if (customSkinURL) {
-                                //skins.src = customSkinURL;
-                            //}
-                            //this.name.replace(/\[|\]/g, '')
+                            skins.src = SKIN_URL + skinName + '.png'/*('.png'|'.jpg')*/;
                         }
                         if (0 != skins.width && skins.complete) {
                             c = skins;
@@ -1616,7 +1610,7 @@
                 }
                 c = -1 != playerCells.indexOf(this);
                 var ncache;
-                //draw name
+                // Draw name and score text
                 if (0 != this.id) {
                     var b = ~~this.y;
                     if ((showName || c) && this.name && this.nameCache && (null == e || -1 == knownNameDict_noDisp.indexOf(skinName))) {
@@ -1632,7 +1626,7 @@
                         b += rnchache.height / 2 / ratio + 4;
                     }
                     if (showMass && (c || 0 == playerCells.length && (!this.isVirus || this.isAgitated) && 20 < this.size)) {
-                        if (null == this.sizeCache) { // Mass text colors
+                        if (null == this.sizeCache) {
                             this.sizeCache = new UText(this.getNameSize() / 2, "#FFF", 1, "#000");
                         }
                         c = this.sizeCache;
@@ -1837,29 +1831,5 @@
             };
         }
     };
-/*    wjQuery(function() {
-        function renderFavicon() {
-            if (0 < playerCells.length) {
-                redCell.color = playerCells[0].color;
-                redCell.setName(playerCells[0].name);
-            }
-            ctx.clearRect(0, 0, 32, 32);
-            ctx.save();
-            ctx.translate(16, 16);
-            ctx.scale(.4, .4);
-            redCell.drawOneCell(ctx);
-            ctx.restore();
-            var favicon = document.getElementById("favicon"), oldfavicon = favicon.cloneNode(1);
-            favicon.parentNode.replaceChild(oldfavicon, favicon)
-        }
-        var redCell = new Cell(0, 0, 0, 32, "#ED1C24", "");
-        var favCanvas = document.createElement("canvas");
-        favCanvas.width = 32;
-        favCanvas.height = 32;
-        var ctx = favCanvas.getContext("2d");
-        renderFavicon();
-        setInterval(renderFavicon, 1E3);
-        setInterval(drawChatBoard, 1E3);
-    });*/
     wHandle.onload = gameLoop;
 })(window, window.jQuery);
