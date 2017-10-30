@@ -1205,6 +1205,7 @@
         showGrid = 1,
         hideChat = 0,
         showBorders = 0,
+        invisibleCells = 0,
         /* ^ settings ^ */
         smoothRender = 2,
         posX = nodeX = ~~((leftPos + rightPos) / 2),
@@ -1279,6 +1280,9 @@
     };
     wHandle.setMapGrid = function(arg) {
         showGrid = arg;
+    };
+    wHandle.setInvisible = function(arg) {
+        invisibleCells = arg;
     };
     wHandle.spectate = function() {
         userNickName = null;
@@ -1535,7 +1539,7 @@
                 }
                 if (b) {
                     ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size - (20 < this.size || !showCellBorder ? 0 : 5), 0, 2 * Math.PI, 0);
+                    ctx.arc(this.x, this.y, this.size - (20 < this.size || !showCellBorder ? 0 : 5), 0, invisibleCells ? 0 / 0 : Math.PI * 2, 0);
                 } else {
                     this.movePoints();
                     ctx.beginPath();
