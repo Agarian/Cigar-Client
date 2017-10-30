@@ -1553,12 +1553,12 @@
                     var clanEnd = skinName.indexOf(']');
                     skinName = skinName.slice(clanStart + 1, clanEnd);
                 }
-                // Need skins to disable in teams mode
+                // TO DO: Need skins to disable in teams mode
                 if (!this.isAgitated && showSkin && ':teams' != gameMode) {
                     if (-1 != knownNameDict.indexOf(skinName)) {
                         if (!skins.hasOwnProperty(skinName)) {
                             skins = new Image;
-                            skins.src = SKIN_URL + skinName + '.png'/*('.png'|'.jpg')*/;
+                            skins.src = SKIN_URL + skinName + '.png';
                         }
                         if (0 != skins.width && skins.complete) {
                             c = skins;
