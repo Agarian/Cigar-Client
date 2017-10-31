@@ -1205,7 +1205,7 @@
         showGrid = 1,
         hideChat = 0,
         showBorders = 0,
-        invisibleCells = 0,
+        transparentCells = 0,
         /* ^ settings ^ */
         smoothRender = 2,
         posX = nodeX = ~~((leftPos + rightPos) / 2),
@@ -1281,8 +1281,8 @@
     wHandle.setMapGrid = function(arg) {
         showGrid = arg;
     };
-    wHandle.setInvisible = function(arg) {
-        invisibleCells = arg;
+    wHandle.setTransparent = function(arg) {
+        transparentCells = arg;
     };
     wHandle.spectate = function() {
         userNickName = null;
@@ -1530,6 +1530,7 @@
                 ctx.lineWidth = 10;
                 ctx.lineCap = "round";
                 ctx.lineJoin = this.isVirus ? "miter" : "round";
+                ctx.globalAlpha = transparentCells ? .5 : 1;
                 if (showColor) {
                     ctx.fillStyle = "#FFF";
                     ctx.strokeStyle = "#AAA";
@@ -1539,7 +1540,7 @@
                 }
                 if (b) {
                     ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size - (20 < this.size || !showCellBorder ? 0 : 5), 0, invisibleCells ? 0 / 0 : Math.PI * 2, 0);
+                    ctx.arc(this.x, this.y, this.size - (20 < this.size || !showCellBorder ? 0 : 5), 0, Math.PI * 2, 0);
                 } else {
                     this.movePoints();
                     ctx.beginPath();
