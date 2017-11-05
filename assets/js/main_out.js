@@ -1095,8 +1095,8 @@
     function drawBorders() {
         if (!showBorders) return;
         ctx.save();
-        if (!String($("#borderColor").val())) ctx.fillStyle = "#FF0";
-        else ctx.fillStyle = "#" + String($("#borderColor").val());
+        if (!String($("#borderColor").val())) ctx.strokeStyle = "#FF0";
+        else ctx.strokeStyle = "#" + String($("#borderColor").val());
         ctx.lineWidth = 20;
         ctx.beginPath();
         ctx.moveTo(minX - 30, minY - 30);
