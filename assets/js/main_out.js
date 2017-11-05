@@ -1095,10 +1095,8 @@
     function drawBorders() {
         if (!showBorders) return;
         ctx.save();
-        var string = String($("#sectorColor").val());
-        if (!string) var color = "F00";
-        else color = string;
-        ctx.strokeStyle = "#" + color;
+        if (!String($("#borderColor").val())) ctx.fillStyle = "#FF0";
+        else ctx.fillStyle = "#" + String($("#borderColor").val());
         ctx.lineWidth = 20;
         ctx.beginPath();
         ctx.moveTo(minX - 30, minY - 30);
@@ -1123,9 +1121,8 @@
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         ctx.font = w * 0.6 + "px Russo One";
-        var string = String($("#sectorColor").val());
-        if (!string) var color = "1A1A1A"
-        else color = string;
+        if (!String($("#sectorColor").val())) var color = "1A1A1A";
+        else color = String($("#sectorColor").val());
         ctx.fillStyle = "#" + color;
         var j = 0;
         for (; 5 > j; j++) {
