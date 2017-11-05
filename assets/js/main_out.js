@@ -1645,9 +1645,7 @@
                         e = c.render();
                         w = ~~(e.width / ratio);
                         h = ~~(e.height / ratio);
-                        if (nameShadows) div = 4.5;
-                        else var div = 2;
-                        ctx.drawImage(e, ~~this.x - ~~(w / 2), b - ~~(h / div), w, h);
+                        ctx.drawImage(e, ~~this.x - ~~(w / 2), b - ~~(h / 2), w, h);
                     }
                 }
                 ctx.restore();
@@ -1708,8 +1706,8 @@
                 ctx.font = font;
                 ctx.scale(scale, scale);
                 ctx.globalAlpha = 1;
-                if (nameShadows) width = 8 / (viewZoom * 2.3);
-                else var width = 3;
+                if (nameShadows) width = 8 / (fontsize * .014);
+                else var width = 1;
                 ctx.lineWidth = width;
                 ctx.strokeStyle = this._strokeColor;
                 ctx.fillStyle = this._color;
