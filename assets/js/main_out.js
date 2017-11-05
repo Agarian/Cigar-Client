@@ -1706,7 +1706,7 @@
                 ctx.font = font;
                 ctx.scale(scale, scale);
                 ctx.globalAlpha = 1;
-                if (nameShadows) width = 8 / (fontsize * .014);
+                if (nameShadows) width = 8 * (fontsize * .014);
                 else var width = 1;
                 ctx.lineWidth = width;
                 ctx.strokeStyle = this._strokeColor;
