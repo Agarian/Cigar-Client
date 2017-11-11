@@ -1057,23 +1057,16 @@
                 if (null == teamScores) {
                     for (ctx.font = "20px Ubuntu", b = 0; b < leaderBoard.length; ++b) {
                         c = leaderBoard[b].name || "An unnamed cell";
-                        if (!showName) {
-                            (c = "An unnamed cell");
-                        }
+                        if (!showName) c = "An unnamed cell";
                         if (-1 != nodesOnScreen.indexOf(leaderBoard[b].id)) {
                             playerCells[0].name && (c = playerCells[0].name);
                             var userLBColor = String($("#lbColor").val());
                             ctx.fillStyle = "#" + userLBColor;
-                            if (!noRanking) {
-                                c = b + 1 + ". " + c;
-                            }
+                            if (!noRanking) c = b + 1 + ". " + c;
                             ctx.fillText(c, 100 - ctx.measureText(c).width / 2, 70 + 24 * b);
                         } else {
-                            //var enemyLBColor = String($("#lbColor2").val());
                             ctx.fillStyle = "#FFF";
-                            if (!noRanking) {
-                                c = b + 1 + ". " + c;
-                            }
+                            if (!noRanking) c = b + 1 + ". " + c;
                             ctx.fillText(c, 100 - ctx.measureText(c).width / 2, 70 + 24 * b);
                         }
                     }
