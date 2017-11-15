@@ -230,7 +230,6 @@
                     if (!nPressed && !isTyping && !hasOverlay) {
                         sendMouseMove();
                         sendUint8(43);
-                        nPressed = 1;
                     }
                     break;
                 case 13: // ENTER key
