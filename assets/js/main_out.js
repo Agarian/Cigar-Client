@@ -19,8 +19,8 @@
     function gameLoop() {
         connecting = 1;
         document.getElementById("canvas").focus();
-        var isTyping = 0;
-        var chattxt;
+        var isTyping = 0,
+            chattxt;
         mainCanvas = nCanvas = document.getElementById("canvas");
         ctx = mainCanvas.getContext("2d");
         mainCanvas.onmousemove = function(event) {
@@ -1199,8 +1199,8 @@
         hideChat = 0,
         showBorders = 0,
         transparentCells = 0,
-        /* ^ settings ^ */
         smoothRender = 2,
+        /* ^ settings ^ */
         posX = nodeX = ~~((leftPos + rightPos) / 2),
         posY = nodeY = ~~((topPos + bottomPos) / 2),
         posSize = 1,
@@ -1573,9 +1573,7 @@
                     if (!b || 20 < this.size)
                     ctx.lineWidth = 5;
                     ctx.stroke();
-                } else {
-                    b || ctx.stroke();
-                }
+                } else b || ctx.stroke();
                 ctx.fill();
                 if (!(null == e || c)) {
                     ctx.save();
@@ -1594,17 +1592,9 @@
                         ctx.lineWidth = size;
                         ctx.stroke();
                     }
-                } else {
-                    if ((showColor || 15 < this.size) && !b) {
-                        ctx.strokeStyle = '#000';
-                        ctx.globalAlpha *= .12;
-                        ctx.stroke();
-                    }
                 }
                 ctx.globalAlpha = 1;
-                if (null != e && c) {
-                    ctx.drawImage(e, this.x - 2 * this.size, this.y - 2 * this.size, 4 * this.size, 4 * this.size);
-                }
+                if (null != e && c) ctx.drawImage(e, this.x - 2 * this.size, this.y - 2 * this.size, 4 * this.size, 4 * this.size);
                 c = -1 != playerCells.indexOf(this);
                 var ncache;
                 // Draw name and score text
@@ -1826,5 +1816,33 @@
             };
         }
     };
+    /*wjQuery(function() {
+        // Updates favicon color based your on cell color.
+        function renderFavicon() {
+            if (0 < playerCells.length) {
+                redCell.color = playerCells[0].color;
+                redCell.setName(playerCells[0].name);
+            }
+            ctx.clearRect(0, 0, 32, 32),
+            ctx.save(),
+            ctx.translate(16, 16),
+            ctx.scale(.4, .4),
+            redCell.drawOneCell(ctx),
+            ctx.restore();
+            var favicon = document.getElementById("favicon"),
+                oldfavicon = favicon.cloneNode(true);
+            oldfavicon.setAttribute("href", favCanvas.toDataURL("image/png"));
+            favicon.parentNode.replaceChild(oldfavicon, favicon);
+        }
+        var redCell = new Cell(0, 0, 0, 32, "#ED1C24", ""),
+            favCanvas = document.createElement("canvas");
+        favCanvas.width = 32;
+        favCanvas.height = 32;
+        var ctx = favCanvas.getContext("2d");
+        renderFavicon();
+        // Causes stuttering.
+        // Update icon color every 5 seconds.
+        setInterval(renderFavicon, 5e3);
+    });*/
     wHandle.onload = gameLoop;
 })(window, window.jQuery);
