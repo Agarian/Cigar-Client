@@ -24,6 +24,7 @@ A heavily modified agar.io client.
  - Name Text Color: Lets you edit the color of your name in the game.
  - Cell Border Color: Lets you edit the color of the cell borders.
  - Cell Border Size: Lets you edit the size of the cell borders.
+ - Infinite Zoom: Lets you zoom out as much as you want (mouse scroll).
   
 ### Other things
 - Show Grid was already in the client, though wouldn't work with the Dark Theme.
@@ -34,6 +35,7 @@ A heavily modified agar.io client.
 - Solo Server 443, Solo Server 4444, and Solo Server 8080.
 - Note this is for if you're running the server on your PC.
 - If you want to connect to a custom server, do the following:
+- Put the server's IP in the Ip text box, or:
 - First press the F12 key (or CTRL+SHIFT+I), then click the console tab at the top.
 - Then type in the following: `setServer("serverIP:port")`.
 - The client also has this tutorial at the bottom of the overlay.
