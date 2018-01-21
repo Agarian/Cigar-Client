@@ -419,7 +419,7 @@
     }
     function handleWheel(event) {
         zoom *= Math.pow(.9, event.wheelDelta / -120 || event.detail || 0);
-        1 > zoom && (zoom = 1);
+        !infiniteZoom && (1 > zoom && (zoom = 1));
         zoom > 4 / viewZoom && (zoom = 4 / viewZoom);
     }
     function buildQTree() {
@@ -1200,6 +1200,7 @@
         showBorders = 0,
         transparentCells = 0,
         smoothRender = 2,
+        infiniteZoom = 0,
         /* ^ settings ^ */
         posX = nodeX = ~~((leftPos + rightPos) / 2),
         posY = nodeY = ~~((topPos + bottomPos) / 2),
@@ -1266,6 +1267,9 @@
     };
     wHandle.setNameShadows = function(arg) {
         nameShadows = arg;
+    };
+    wHandle.setZoom = function(arg) {
+        infiniteZoom = arg;
     };
     wHandle.setChatHide = function(arg) {
         hideChat = arg;
