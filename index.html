@@ -20,7 +20,7 @@
 	<script>
 		window.addEventListener('keydown', keydown);
 		function keydown(event) {
-			if (event.keyCode == 16) { // SHIFT
+			if (event.keyCode == 16) { // Shift
 				for (var shift = 0; shift < 5; shift++) setTimeout(split, shift * 50);
 			}
 			if (event.keyCode == 65) { // A
@@ -31,7 +31,7 @@
 				setTimeout(split, 50);
 			}
 		}
-		function split() { // SPACE alias
+		function split() { // Space
 			$("body").trigger($.Event("keydown", {
 				keyCode: 32
 			}));
@@ -78,6 +78,7 @@
                         <label><input type="checkbox" onchange="setMapGrid($(this).is(':checked'));" checked> Show Grid</label>
                         <label><input type="checkbox" onchange="setNameShadows($(this).is(':checked'));"> Name Shadows</label>
 			<label><input type="checkbox" onchange="setTransparent($(this).is(':checked'));"> Transparent Cells</label>
+			<label><input type="checkbox" onchange="setZoom($(this).is(':checked'));"> Infinite Zoom</label>
                         <hr>
                         <!--NOTE: </b>You do not need to include the # in the color hex.!-->
                         <table>
