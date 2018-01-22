@@ -29,6 +29,7 @@ A heavily modified agar.io client.
 ### Other things
 - Show Grid was already in the client, though wouldn't work with the Dark Theme.
 - Hide Chat was broken in the client, until now.
+- Recommended page zoom is 75%.
  
 ### Connecting to servers
 - Next to the name box, there is a drop down menu with 3 options:
