@@ -69,9 +69,10 @@
                     </center>
                 </div>
                 <div class="form-group"> <button type="submit" id="play-btn" onclick="setNick(document.getElementById('nick').value); return false;" class="btn btn-play btn-primary btn-needs-server">Play</button>
-                    <br/> </div>
+                <br><br/></div>
                 <div id="leftOptions">
                     <div style="margin: 6px;">
+                        <center><h3>Settings</h3></center>
                         <label><input type="checkbox" onchange="setSkins(!$(this).is(':checked'));"> Hide Skins</label>
                         <label><input type="checkbox" onchange="setNames(!$(this).is(':checked'));"> Hide Names</label>
                         <label><input type="checkbox" onchange="setDarkTheme($(this).is(':checked'));" checked> Dark Theme</label>
@@ -89,7 +90,7 @@
                         <label><input type="checkbox" onchange="setTransparent($(this).is(':checked'));"> Transparent Cells</label>
                         <label><input type="checkbox" onchange="setZoom($(this).is(':checked'));"> Infinite Zoom</label>
                         <!-- NOTE: </b>You do not need to include the # in the color hex. !-->
-                        <!-- class="jscolor" -> color selection !-->
+                        <p> </p>
                         <table>
                             <tr>
                                 <td><label>Map Border Color</label>
@@ -113,6 +114,7 @@
                             </tr>
                         </table>
                         <br/>
+                        <p> </p>
                         <div class="form-group" id="mainform"> <button id="spectate-btn" onclick="spectate(); return false;" style="width: 100%" class="btn btn-warning btn-spectate btn-needs-server">Spectate
                             </button> <br clear="both" /> </div>
                     </div>
