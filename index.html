@@ -1,147 +1,159 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Eat cells smaller than you and don't get eaten by the bigger ones, as an MMO">
-	<meta name="keywords" content="agario, agar, io, cell, cells, virus, bacteria, blob, game, games, web game, html5, fun, flash">
-	<meta name="robots" content="index, follow">
-	<meta name="viewport" content="minimal-ui, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<title>Ogar Client</title>
-	<link id="favicon" rel="icon" type="image/png" href="assets/img/favicon.png" />
-	<link href="assets/css/fonts.googleapis.css" rel='stylesheet' type='text/css'>
-	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
-	<link href="assets/css/index.css" rel="stylesheet">
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/vector.js"></script>
-	<script src="assets/js/main_out.js"></script>
-	<script>
-		window.addEventListener('keydown', keydown);
-		function keydown(event) {
-			if (event.keyCode == 16) { // Shift
-				for (var shift = 0; shift < 5; shift++) setTimeout(split, shift * 50);
-			}
-			if (event.keyCode == 65) { // A
-				for (var a = 0; a < 3; a++) setTimeout(split, a * 50);
-			}
-			if (event.keyCode == 68) { // D
-				split();
-				setTimeout(split, 50);
-			}
-		}
-		function split() { // Space
-			$("body").trigger($.Event("keydown", {
-				keyCode: 32
-			}));
-			$("body").trigger($.Event("keyup", {
-				keyCode: 32
-			}));
-		}
-	</script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Eat cells smaller than you and don't get eaten by the bigger ones, as an MMO">
+    <meta name="keywords" content="agario, agar, io, cell, cells, virus, bacteria, blob, game, games, web game, html5, fun, flash">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="minimal-ui, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Ogar Client</title>
+    <link id="favicon" rel="icon" type="image/png" href="assets/img/favicon.png" />
+    <link href="assets/css/fonts.googleapis.css" rel='stylesheet' type='text/css'>
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/index.css" rel="stylesheet">
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/vector.js"></script>
+    <script src="assets/js/main_out.js"></script>
+    <script src="assets/js/jscolor.js"></script>
+    <script>
+        // Macro for shift split
+        window.addEventListener('keydown', keydown);
+
+        function keydown(event) {
+            if (event.keyCode == 16) {
+                for (var shift = 0; shift < 5; shift++) setTimeout(split, shift * 50);
+            }
+            if (event.keyCode == 65) {
+                for (var i = 0; i < 3; i++) setTimeout(split, i * 50);
+            }
+            if (event.keyCode == 68) {
+                split();
+                setTimeout(split, 50);
+            }
+        } /*global $*/
+        function split() {
+            $("body").trigger($.Event("keydown", {
+                keyCode: 32
+            }));
+            $("body").trigger($.Event("keyup", {
+                keyCode: 32
+            }));
+        }
+    </script>
 </head>
+
 <body>
-	<div id="overlays">
-		<div id="helloDialog">
-			<form role="form">
-				<div class="form-group">
-					<center><h2 id="title">Ogar Client</h2></center>
-				</div>
-				<div class="form-group"> <input id="nick" class="form-control" style="margin-bottom: 10px;" placeholder="Nick" maxlength="30" />
-				<select id="gamemode" class="form-control" style="margin-bottom: 10px;" onchange="setServer($(this).val())" required>
+    <div id="overlays">
+        <div id="helloDialog">
+            <form role="form">
+                <div class="form-group">
+                    <center>
+                        <h2 id="title">Ogar Client</h2>
+                    </center>
+                </div>
+                <div class="form-group"> <input id="nick" class="form-control" style="margin-bottom: 10px;" placeholder="Nick" maxlength="30" />
+                    <select id="gamemode" class="form-control" style="margin-bottom: 10px;" onchange="setServer($(this).val())" required>
                         <option selected disabled>Select:</option>
                         <option value="127.0.0.1:443">Solo Server 443</option>
                         <option value="127.0.0.1:4444">Solo Server 4444</option>
                         <option value="127.0.0.1:8080">Solo Server 8080</option>
+                        <!--option value="150.95.135.169:8001">Virus-Off</option!-->
                     </select>
-		    <input class="form-control" id="" placeholder="Insert server IP" onchange="setServer($(this).val())">
-		    <center><p>NOTE: Click out of the text box to connect to the IP!</p></center>
-                    </div>
-				<div class="form-group"> <button type="submit" id="play-btn" onclick="setNick(document.getElementById('nick').value); return false;" class="btn btn-play btn-primary btn-needs-server">Play</button> <button onclick="$('#settings, #instructions').toggle(); return false;" class="btn btn-info btn-settings" id="settings-btn"><i class="glyphicon glyphicon-cog"></i></button> <br clear="both" /> </div>
-				<div id="settings" class="checkbox" style="display:none;">
-					<div class="form-group" id="mainform"> <button id="spectate-btn" onclick="spectate(); return false;" style="width: 100%" class="btn btn-warning btn-spectate btn-needs-server">Spectate
-                        </button> <br clear="both" /> </div>
-					<div style="margin: 6px;">
+                    <input class="form-control" id="" placeholder="Insert server IP" onchange="setServer($(this).val())" />
+                    <center>
+                        <p>NOTE: Click out of the text box to connect to the IP!</p>
+                    </center>
+                </div>
+                <div class="form-group"> <button type="submit" id="play-btn" onclick="setNick(document.getElementById('nick').value); return false;" class="btn btn-play btn-primary btn-needs-server">Play</button>
+                    <br/> </div>
+                <div id="leftOptions">
+                    <div style="margin: 6px;">
                         <label><input type="checkbox" onchange="setSkins(!$(this).is(':checked'));"> Hide Skins</label>
                         <label><input type="checkbox" onchange="setNames(!$(this).is(':checked'));"> Hide Names</label>
-                        <label><input type="checkbox" onchange="setDarkTheme($(this).is(':checked'));"> Dark Theme</label>
+                        <label><input type="checkbox" onchange="setDarkTheme($(this).is(':checked'));" checked> Dark Theme</label>
                         <label><input type="checkbox" onchange="setColors($(this).is(':checked'));"> No Colors</label>
-                        <label><input type="checkbox" onchange="setShowMass($(this).is(':checked'));"> Show Mass</label>
+                        <label><input type="checkbox" onchange="setShowMass($(this).is(':checked'));" checked> Show Mass</label>
                         <label><input type="checkbox" onchange="setSmooth($(this).is(':checked'));" checked> Smooth Render</label>
                         <label><input type="checkbox" onchange="setChatHide($(this).is(':checked'));"> Hide Chat</label>
                         <label><input type="checkbox" onchange="setCellBorder($(this).is(':checked'));"> Show Cell Border</label>
                         <label><input type="checkbox" onchange="setAcid($(this).is(':checked'));"> Acid Mode</label>
-                        <label><input type="checkbox" onchange="setCellPos($(this).is(':checked'));"> Show Position</label>
-                        <label><input type="checkbox" onchange="setMapBorders($(this).is(':checked'));"> Show Map Border</label>
+                        <label><input type="checkbox" onchange="setCellPos($(this).is(':checked'));" checked> Show Map Position</label>
+                        <label><input type="checkbox" onchange="setMapBorders($(this).is(':checked'));" checked> Show Map Border</label>
                         <label><input type="checkbox" onchange="setMapSectors($(this).is(':checked'));"> Show Sectors</label>
                         <label><input type="checkbox" onchange="setMapGrid($(this).is(':checked'));" checked> Show Grid</label>
-                        <label><input type="checkbox" onchange="setNameShadows($(this).is(':checked'));"> Name Shadows</label>
-			<label><input type="checkbox" onchange="setTransparent($(this).is(':checked'));"> Transparent Cells</label>
-			<label><input type="checkbox" onchange="setZoom($(this).is(':checked'));"> Infinite Zoom</label>
-                        <hr>
-                        <!--NOTE: </b>You do not need to include the # in the color hex.!-->
+                        <label><input type="checkbox" onchange="setNameShadows($(this).is(':checked'));" checked> Name Shadows</label>
+                        <label><input type="checkbox" onchange="setTransparent($(this).is(':checked'));"> Transparent Cells</label>
+                        <label><input type="checkbox" onchange="setZoom($(this).is(':checked'));"> Infinite Zoom</label>
+                        <!-- NOTE: </b>You do not need to include the # in the color hex. !-->
+                        <!-- class="jscolor" -> color selection !-->
                         <table>
-                        	<tr>
-                        		<td><label>Map Border Color</label>
-                        		<input class="form-control" id="borderColor" placeholder="Input HEX color" value="FF0000" style="width:180px;"></td>
-                        		<td><label>Map Sector Color</label>
-                        		<input class="form-control" id="sectorColor" placeholder="Input HEX color" value="1A1A1A" style="width:180px;"></td>
-                        	</tr>
+                            <tr>
+                                <td><label>Map Border Color</label>
+                                    <input class="form-control" id="borderColor" placeholder="Input HEX color" value="FF0000" style="width:180px;"></td>
+                                <td><label>Map Sector Color</label>
+                                    <input class="form-control" id="sectorColor" placeholder="Input HEX color" value="1A1A1A" style="width:180px;"></td>
+                            </tr>
                         </table>
                         <table>
-                        	<tr>
-                        		<td><label>LB Text Color (YOU)</label>
-                        		<input class="form-control" id="lbColor" placeholder="Input HEX color" value="FFAAAA" style="width:180px;"></td>
-                        		<td><label>Name Text Color</label>
-                        		<input class="form-control" id="nameColor" placeholder="Input HEX color" value="FFFFFF" style="width:180px;"></td>
-                        	</tr>
-                        	<tr>
-                        		<td><label>Cell Border Color</label>
-                        		<input class="form-control" id="cellBorderColor" placeholder="Input HEX color" value="000000" style="width:180px;"></td>
-                        		<td><label>Cell Border Size</label>
-                        		<input class="form-control" id="cellBorderSize" placeholder="Size value (pixels)" value="6" type="number" style="width:180px;"></td>
-                        	</tr>
+                            <tr>
+                                <td><label>LB Text Color (YOU)</label>
+                                    <input class="form-control" id="lbColor" placeholder="Input HEX color" value="FFAAAA" style="width:180px;"></td>
+                                <td><label>Name Text Color</label>
+                                    <input class="form-control" id="nameColor" placeholder="Input HEX color" value="FFFFFF" style="width:180px;"></td>
+                            </tr>
+                            <tr>
+                                <td><label>Cell Border Color</label>
+                                    <input class="form-control" id="cellBorderColor" placeholder="Input HEX color" value="000000" style="width:180px;"></td>
+                                <td><label>Cell Border Size</label>
+                                    <input class="form-control" id="cellBorderSize" placeholder="Size Value (pixels)" value="5" type="number" style="width:180px;"></td>
+                            </tr>
                         </table>
+                        <br/>
+                        <div class="form-group" id="mainform"> <button id="spectate-btn" onclick="spectate(); return false;" style="width: 100%" class="btn btn-warning btn-spectate btn-needs-server">Spectate
+                            </button> <br clear="both" /> </div>
                     </div>
-				</div>
-			</form>
-			<div id="instructions">
-				<hr/>
-				<center>
-					<span class="text-muted">
-                	    Move your mouse to control your cell<br/>
-                	    Press <b>Space</b> to split<br/>
-                	    Press <b>W</b> to eject mass<br/>
-                	    Press <b>E</b> to split minions<br/>
-                	    Press <b>R</b> to make minions eject mass<br/>
-                	    Press <b>T</b> to freeze/unfreeze minions<br/>
-                	    Press <b>P</b> to make minions collect food<br/>
-                	    Press <b>Q</b> (in-game) to make minions follow your cell<br/>
+                </div>
+            </form>
+            <div id="instructions">
+                <hr/>
+                <center>
+                    <span class="text-muted">
+            			Move your mouse to control your cell<br/>
+            			Press <b>Space</b> to split<br/>
+            			Press <b>W</b> to eject mass<br/>
+            			Press <b>E</b> to split minions<br/>
+            			Press <b>R</b> to make minions eject mass<br/>
+            			Press <b>T</b> to freeze/unfreeze minions<br/>
+            			Press <b>P</b> to make minions collect food<br/>
+            			Press <b>Q</b> (in-game) to make minions follow your cell<br/>
                 	</span>
                 </center>
                 <hr/>
-                <!--center>
-                	<a href="https://github.com/OgarProject/Ogar" class="text-muted" target="_blank">GitHub - Ogar Project</a><br>
-					<a href="https://github.com/Barbosik/MultiOgar" class="text-muted" target="_blank">GitHub - MultiOgar</a><br>
-					<a href="https://github.com/Megabyte918/MultiOgar-Edited" class="text-muted" target="_blank">GitHub - MultiOgar Edited</a><br>
-					<a href="https://github.com/CigarProject/Cigar" class="text-muted" target="_blank">GitHub - CigarProject</a><br>
-					<a href="https://github.com/proxiemind/Ogar-Unlimited" class="text-muted" target="_blank">GitHub - Ogar Unlimited</a>
-				</center!-->
-				<center><p><b>How to connect to a custom server:</b></p></center>
-				<center><p>Paste the server IP in the text box under the name text box.</p></center>
-				<center><p>Or, press the F12 key, then look for the <i>console</i> tab, and finally type <i>setServer("serverIP:port")</i> and press enter.</p></center>
-			</div>
-		</div>
-	</div>
-	<div id="connecting">
-		<div style="width: 350px; background-color: #FFFFFF; margin: 100px auto; border-radius: 15px; padding: 5px 15px 5px 15px;">
-			<center>
-				<h2>Connecting</h2>
-			</center>
-			<p>If you cannot connect to the server, check if you have some anti virus or firewall blocking the connection, make sure you selected a server to connect to, and make sure the server you're connecting to is up.</p>
-		</div>
-	</div> <canvas id="canvas" width="800" height="600"></canvas> <input type="text" id="chat_textbox" placeholder="Press enter to chat!" maxlength="200" />
-	<div style="font-family:'Ubuntu'">&nbsp;</div>
+                <center>
+                    <p><b>How to connect to a custom server:</b></p>
+                </center>
+                <center>
+                    <p>Paste the server IP in the text box under the name text box.</p>
+                </center>
+                <center>
+                    <p>Or, press the F12 key, then look for the <i>console</i> tab, and finally type <i>setServer("serverIP:port")</i> and press enter.</p>
+                </center>
+            </div>
+        </div>
+    </div>
+    <div id="connecting">
+        <div style="width: 350px; background-color: #FFF; margin: 100px auto; border-radius: 15px; padding: 5px 15px 5px 15px;">
+            <center>
+                <h2>Connecting</h2>
+            </center>
+            <p>If you cannot connect to the server, check if you have some anti virus or firewall blocking the connection, make sure you selected a server to connect to, and make sure the server you're connecting to is up.</p>
+        </div>
+    </div> <canvas id="canvas" width="800" height="600"></canvas> <input type="text" id="chat_textbox" placeholder="Press enter to chat!" maxlength="200" />
+    <div style="font-family:'Ubuntu'">&nbsp;</div>
 </body>
+
 </html>
