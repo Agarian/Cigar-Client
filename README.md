@@ -34,13 +34,12 @@ A heavily modified agar.io client.
 ### Connecting to servers
 - Next to the name box, there is a drop down menu with 3 options:
 - Solo Server 443, Solo Server 4444, and Solo Server 8080.
-- Note this is for if you're running the server on your PC.
+- Note those are for if you're running the server on your PC.
 - If you want to connect to a custom server, do the following:
 - Put the server's IP in the Ip text box, or:
 - First press the F12 key (or CTRL+SHIFT+I), then click the console tab at the top.
 - Then type in the following: `setServer("serverIP:port")`.
 - The client also has this tutorial at the bottom of the overlay.
 
-### ScreenShots
-![client-screenshot-1](https://user-images.githubusercontent.com/23372586/32140409-100963ac-bc36-11e7-9bf8-8858c447d661.png)
-![client-screenshot-2](https://user-images.githubusercontent.com/23372586/32140410-12975aa2-bc36-11e7-96d0-4f347207b3bc.png)
+### Screen-Shot
+![_client](https://user-images.githubusercontent.com/23372586/35252035-74e6ebaa-ffac-11e7-9efc-3f1c150b38cf.png)
