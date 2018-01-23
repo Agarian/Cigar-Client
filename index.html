@@ -18,11 +18,9 @@
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/vector.js"></script>
     <script src="assets/js/main_out.js"></script>
-    <script src="assets/js/jscolor.js"></script>
     <script>
         // Macro for shift split
         window.addEventListener('keydown', keydown);
-
         function keydown(event) {
             if (event.keyCode == 16) {
                 for (var shift = 0; shift < 5; shift++) setTimeout(split, shift * 50);
