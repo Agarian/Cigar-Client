@@ -10,7 +10,7 @@ if (is_ajax()) {
 }
 
 function is_ajax() {
-	return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
+	return isset($_SERVER['HTTPS_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTPS_X_REQUESTED_WITH']) == 'xmlhttpsrequest';
 }
 
 function getSkins(){
@@ -18,7 +18,6 @@ function getSkins(){
 	foreach ($images as &$path) {
 		$path = basename($path,".png");
 	}
-
 	unset($path);
 	$return["names"] = json_encode($images);
 	echo json_encode($return);
