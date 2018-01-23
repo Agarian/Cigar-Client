@@ -118,8 +118,3 @@ body {
 .mb-10 {
     margin-bottom: 10px;
 }
-#inPageModalBody {
-	max-height: 7in;
-	background-color: #FFF;
-	overflow: auto;
-}
