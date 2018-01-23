@@ -1315,7 +1315,7 @@
     wjQuery.ajax({
         type: "POST",
         dataType: "json",
-        url: "checkdir.php",
+        //url: "checkdir.php",
         data: data,
         success: function(data) {
             response = JSON.parse(data["names"]);
@@ -1325,7 +1325,7 @@
         wjQuery.ajax({
             type: "POST",
             dataType: "json",
-            url: "checkdir.php",
+            //url: "checkdir.php",
             data: data,
             success: function(data) {
                 response = JSON.parse(data["names"]);
