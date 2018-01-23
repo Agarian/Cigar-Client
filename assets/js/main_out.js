@@ -1316,7 +1316,7 @@
         type: "POST",
         dataType: "json",
         url: "checkdir.php",
-        data: data,
+        data: {"action" : "getSkins"},
         success: function(data) {
             response = JSON.parse(data["names"]);
         }
@@ -1848,5 +1848,12 @@
         // Update icon color every 5 seconds.
         setInterval(renderFavicon, 5e3);
     });*/
+	wHandle.openSkinsList = function() {
+        if (wjQuery("#inPageModalTitle").text() === "Skins") return;
+        wjQuery.get("include/gallery.php").then(function(data) {
+            wjQuery("#inPageModalTitle").text("Skins");
+            wjQuery("#inPageModalBody").html(data);
+        });
+    };
     wHandle.onload = gameLoop;
 })(window, window.jQuery);
