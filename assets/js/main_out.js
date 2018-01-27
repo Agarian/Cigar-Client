@@ -1,7 +1,7 @@
 (function(wHandle, wjQuery) {
     /*global navigator, Image, $*/
-    var CONNECTION_URL = "127.0.0.1:443"; // Default Connection
-    var SKIN_URL = "./skins/"; // Skin Directory
+    var CONNECTION_URL = "127.0.0.1:443"; // Default Connection IP
+    var SKIN_URL = "./skins/"; // Skins Directory
     wHandle.setServer = function(arg) {
         if (arg != gameMode) {
             CONNECTION_URL = arg;
@@ -679,13 +679,13 @@
     function drawChatBoard() {
         chatCanvas = document.createElement("canvas");
         var ctx = chatCanvas.getContext("2d");
-        var scaleFactor = Math.min(Math.max(canvasWidth / 1200, 0.75), 1); //scale factor = 0.75 to 1
-        chatCanvas.width = 900 * scaleFactor;
-        chatCanvas.height = 145 * scaleFactor;
+        var scaleFactor = Math.min(Math.max(canvasWidth / 1200, 0.75), 1); // Scale factor = 0.75 to 1
+        chatCanvas.width = 1000 * scaleFactor;
+        chatCanvas.height = 550 * scaleFactor;
         ctx.scale(scaleFactor, scaleFactor);
         ctx.globalAlpha = 0.8;
         var len = chatBoard.length;
-        var from = len - 15;
+        var from = len - 10; // Max amount of lines to display on a chat board
         if (from < 0) from = 0;
         for (var i = 0; i < (len - from); i++) {
             var chatName = new UText(18, chatBoard[i + from].color);
