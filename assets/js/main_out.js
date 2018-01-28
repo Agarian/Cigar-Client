@@ -651,15 +651,9 @@
         }
         var flags = view.getUint8(offset++);
         // for future expansions
-        if (flags & 2) {
-            offset += 4;
-        }
-        if (flags & 4) {
-            offset += 8;
-        }
-        if (flags & 8) {
-            offset += 16;
-        }
+        if (flags & 2) offset += 4;
+        if (flags & 4) offset += 8;
+        if (flags & 8) offset += 16;
         var r = view.getUint8(offset++),
             g = view.getUint8(offset++),
             b = view.getUint8(offset++),
@@ -693,7 +687,7 @@
             var width = chatName.getWidth();
             var a = chatName.render();
             ctx.drawImage(a, 15, chatCanvas.height / scaleFactor - 24 * (len - i - from));
-            var chatText = new UText(18, '#666666');
+            var chatText = new UText(18, '#666');
             chatText.setValue(':' + chatBoard[i + from].message);
             a = chatText.render();
             ctx.drawImage(a, 15 + width * 1.8, chatCanvas.height / scaleFactor - 24 * (len - from - i));
@@ -1343,8 +1337,8 @@
         z = 1,
         scoreText = null,
         skins = {},
-        knownNameDict = "ugandan knuckles;kraken;latvia;fidget red;fidget blue;fidget black;fidget green;fidget yellow;fidget grey;fidget orange;fidget white;fidget spinner;illuminati;dodge charger;cr king;dark theme;mercury;cell;virus;basketball;rockstar n;penta;rockstar s;penta;creeper;dragon;chrome;hellcat;poland;usa;china;russia;canada;australia;spain;brazil;germany;ukraine;france;sweden;chaplin;north korea;south korea;japan;united kingdom;earth;greece;latvia;lithuania;estonia;finland;norway;cia;maldivas;ussr;austria;nigeria;reddit;yaranaika;confederate;9gag;indiana;imperial japan;apple;4chan;italy;cat;bulgaria;tumblr;2ch.hk;hong kong;portugal;jamaica;german empire;mexico;sanik;switzerland;croatia;chile;indonesia;bangladesh;thailand;iran;iraq;peru;moon;botswana;bosnia;netherlands;european union;taiwan;pakistan;hungary;satanist;qing dynasty;matriarchy;patriarchy;feminism;ireland;texas;facepunch;prodota;cambodia;steam;piccolo;ea;india;kc;denmark;quebec;ayy lmao;sealand;bait;tsarist russia;origin;vinesauce;stalin;belgium;luxembourg;stussy;prussia;8ch;argentina;scotland;sir;romania;wojak;doge;nasa;byzantium;imperial japan;french kingdom;somalia;turkey;mars;pokerface;8;irs;receita federal;illuminati;facebook;putin;merkel;tsipras;obama;kim jong-un;dilma;hollande;berlusconi;cameron;clinton;hillary;venezuela;blatter;chavez;cuba;fidel;merkel;palin;queen;boris;bush;trump;underwood".split(";"),
-        knownNameDict_noDisp = "ugandan knuckles;kraken;fidget red;fidget blue;fidget black;fidget green;fidget yellow;fidget grey;fidget orange;fidget white;fidget spinner;cell;virus;8;EA;hellcat;cr king;nasa;putin;merkel;tsipras;obama;kim jong-un;dilma;hollande;berlusconi;cameron;clinton;hillary;blatter;chavez;fidel;merkel;palin;queen;boris;bush;trump;underwood;dodge charger;dark theme",
+        knownNameDict = "ugandan knuckles;latvia;fidget red;fidget blue;fidget black;fidget green;fidget yellow;fidget grey;fidget orange;fidget white;fidget spinner;illuminati;dodge charger;cr king;dark theme;mercury;cell;virus;basketball;rockstar n;penta;rockstar s;penta;creeper;dragon;chrome;hellcat;poland;usa;china;russia;canada;australia;spain;brazil;germany;ukraine;france;sweden;chaplin;north korea;south korea;japan;united kingdom;earth;greece;latvia;lithuania;estonia;finland;norway;cia;maldivas;ussr;austria;nigeria;reddit;yaranaika;confederate;9gag;indiana;imperial japan;apple;4chan;italy;cat;bulgaria;tumblr;2ch.hk;hong kong;portugal;jamaica;german empire;mexico;sanik;switzerland;croatia;chile;indonesia;bangladesh;thailand;iran;iraq;peru;moon;botswana;bosnia;netherlands;european union;taiwan;pakistan;hungary;satanist;qing dynasty;matriarchy;patriarchy;feminism;ireland;texas;facepunch;prodota;cambodia;steam;piccolo;ea;india;kc;denmark;quebec;ayy lmao;sealand;bait;tsarist russia;origin;vinesauce;stalin;belgium;luxembourg;stussy;prussia;8ch;argentina;scotland;sir;romania;wojak;doge;nasa;byzantium;imperial japan;french kingdom;somalia;turkey;mars;pokerface;8;irs;receita federal;illuminati;facebook;putin;merkel;tsipras;obama;kim jong-un;dilma;hollande;berlusconi;cameron;clinton;hillary;venezuela;blatter;chavez;cuba;fidel;merkel;palin;queen;boris;bush;trump;underwood".split(";"),
+        knownNameDict_noDisp = "ugandan knuckles;fidget red;fidget blue;fidget black;fidget green;fidget yellow;fidget grey;fidget orange;fidget white;fidget spinner;cell;virus;8;EA;hellcat;cr king;nasa;putin;merkel;tsipras;obama;kim jong-un;dilma;hollande;berlusconi;cameron;clinton;hillary;blatter;chavez;fidel;merkel;palin;queen;boris;bush;trump;underwood;dodge charger;dark theme",
         ib = ["_canvas'blob"];
     Cell.prototype = {
         id: 0,
@@ -1504,9 +1498,8 @@
             return b;
         },
         shouldRender: function() {
-            if (0 == this.id) {
-                return 1;
-            } else {
+            if (0 == this.id) return 1;
+            else {
                 return !(this.x + this.size + 40 < nodeX - canvasWidth / 2 / viewZoom ||
                 this.y + this.size + 40 < nodeY - canvasHeight / 2 / viewZoom ||
                 this.x - this.size - 40 > nodeX + canvasWidth / 2 / viewZoom ||
@@ -1563,15 +1556,9 @@
                         }
                         if (0 != skins.width && skins.complete) {
                             c = skins;
-                        } else {
-                            c = null;
-                        }
-                    } else {
-                        c = null;
-                    }
-                } else {
-                    c = null;
-                }
+                        } else c = null;
+                    } else c = null;
+                } else c = null;
                 c = (e = c) ? -1 != ib.indexOf(skinName) : 0;
                 if (showCellBorder) {
                     if (!b || 20 < this.size)
@@ -1756,9 +1743,7 @@
                         if (this.items.length >= c && this.depth < d) {
                             this.devide();
                             this.nodes[this.findInsertNode(a)].insert(a);
-                        } else {
-                            this.items.push(a);
-                        }
+                        } else this.items.push(a);
                     }
                 },
                 findInsertNode: function(a) {
@@ -1821,7 +1806,7 @@
         }
     };
     /*wjQuery(function() {
-        // Updates favicon color based your on cell color.
+        // Updates favicon color based your on cell color
         function renderFavicon() {
             if (0 < playerCells.length) {
                 redCell.color = playerCells[0].color;
@@ -1844,8 +1829,8 @@
         favCanvas.height = 32;
         var ctx = favCanvas.getContext("2d");
         renderFavicon();
-        // Causes stuttering.
-        // Update icon color every 5 seconds.
+        // NOTE: This feature causes stuttering
+        // Update icon color every 5 seconds
         setInterval(renderFavicon, 5e3);
     });*/
     wHandle.onload = gameLoop;
