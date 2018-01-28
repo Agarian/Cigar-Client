@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,7 +18,7 @@
     <script src="assets/js/vector.js"></script>
     <script src="assets/js/main_out.js"></script>
     <script>
-        // Macro for shift split
+        // Macro for splitting
         window.addEventListener('keydown', keydown);
         function keydown(event) {
             if (event.keyCode == 16) {
@@ -43,7 +42,6 @@
         }
     </script>
 </head>
-
 <body>
     <div id="overlays">
         <div id="helloDialog">
@@ -86,34 +84,46 @@
                         <label><input type="checkbox" onchange="setNameShadows($(this).is(':checked'));"> Name Shadows</label>
                         <label><input type="checkbox" onchange="setTransparent($(this).is(':checked'));"> Transparent Cells</label>
                         <label><input type="checkbox" onchange="setZoom($(this).is(':checked'));"> Infinite Zoom</label>
-                        <!-- NOTE: </b>You do not need to include the # in the color hex. !-->
+                        <!--NOTE:You do not need to include the # in the color hex.-->
                         <p> </p>
                         <table>
                             <tr>
-                                <td><label>Map Border Color</label>
-                                    <input class="form-control" id="borderColor" placeholder="Input HEX color" value="FF0000" style="width:180px;"></td>
-                                <td><label>Map Sector Color</label>
-                                    <input class="form-control" id="sectorColor" placeholder="Input HEX color" value="1A1A1A" style="width:180px;"></td>
+                                <td>
+				    <label>Map Border Color</label>
+                                    <input class="form-control" id="borderColor" placeholder="Input HEX color" value="FF0000" style="width:180px;">
+				</td>
+                                <td>
+				    <label>Map Sector Color</label>
+                                    <input class="form-control" id="sectorColor" placeholder="Input HEX color" value="1A1A1A" style="width:180px;">
+				</td>
                             </tr>
                         </table>
                         <table>
                             <tr>
-                                <td><label>LB Text Color (YOU)</label>
-                                    <input class="form-control" id="lbColor" placeholder="Input HEX color" value="FFAAAA" style="width:180px;"></td>
-                                <td><label>Name Text Color</label>
-                                    <input class="form-control" id="nameColor" placeholder="Input HEX color" value="FFFFFF" style="width:180px;"></td>
+                                <td>
+				    <label>LB Text Color (you)</label>
+                                    <input class="form-control" id="lbColor" placeholder="Input HEX color" value="FFAAAA" style="width:180px;">
+				</td>
+                                <td>
+				    <label>Name Text Color</label>
+                                    <input class="form-control" id="nameColor" placeholder="Input HEX color" value="FFFFFF" style="width:180px;">
+				</td>
                             </tr>
                             <tr>
-                                <td><label>Cell Border Color</label>
-                                    <input class="form-control" id="cellBorderColor" placeholder="Input HEX color" value="000000" style="width:180px;"></td>
-                                <td><label>Cell Border Size</label>
-                                    <input class="form-control" id="cellBorderSize" placeholder="Size Value (pixels)" value="5" type="number" style="width:180px;"></td>
+                                <td>
+				    <label>Cell Border Color</label>
+                                    <input class="form-control" id="cellBorderColor" placeholder="Input HEX color" value="000000" style="width:180px;">
+				</td>
+                                <td>
+				    <label>Cell Border Size</label>
+                                    <input class="form-control" id="cellBorderSize" placeholder="Size Value (pixels)" value="5" type="number" style="width:180px;">
+				</td>
                             </tr>
                         </table>
                         <br/>
                         <p> </p>
                         <div class="form-group" id="mainform"> <button id="spectate-btn" onclick="spectate(); return false;" style="width: 100%" class="btn btn-warning btn-spectate btn-needs-server">Spectate
-                            </button> <br clear="both" /> </div>
+                        </button> <br clear="both" /></div>
                     </div>
                 </div>
             </form>
@@ -121,23 +131,19 @@
                 <hr/>
                 <center>
                     <span class="text-muted">
-            			Move your <b>Mouse</b> to control your cell<br/>
-            			Press <b>Space</b> to split<br/>
-            			Press <b>W</b> to eject mass<br/>
-            			Press <b>E</b> to split minions<br/>
-            			Press <b>R</b> to make minions eject mass<br/>
-            			Press <b>T</b> to freeze/unfreeze minions<br/>
-            			Press <b>P</b> to make minions collect food<br/>
-                	</span>
+            		Move your <b>Mouse</b> to control your cell<br/>
+            		Press <b>Space</b> to split<br/>
+            		Press <b>W</b> to eject mass<br/>
+            		Press <b>E</b> to split minions<br/>
+            		Press <b>R</b> to make minions eject mass<br/>
+            		Press <b>T</b> to freeze/unfreeze minions<br/>
+            		Press <b>P</b> to make minions collect food<br/>
+                    </span>
                 </center>
                 <hr/>
                 <center>
                     <p><b>How to connect to a custom server:</b></p>
-                </center>
-                <center>
                     <p>Paste the server IP in the text box under the name text box.</p>
-                </center>
-                <center>
                     <p>Or, press the F12 key, then look for the <i>console</i> tab, and finally type <i>setServer("serverIP:port")</i> and press enter.</p>
                 </center>
             </div>
@@ -148,10 +154,9 @@
             <center>
                 <h2>Connecting</h2>
             </center>
-            <p>If you cannot connect to the server, check if you have some anti virus or firewall blocking the connection, make sure you selected a server to connect to, and make sure the server you're connecting to is up.</p>
+            <p>If you cannot connect to the server, check if you have some anti-virus or firewall blocking the connection, make sure you selected a server to connect to, and/or make sure the server you're connecting to isn't down.</p>
         </div>
-    </div> <canvas id="canvas" width="800" height="600"></canvas> <input type="text" id="chat_textbox" placeholder="Press enter to chat!" maxlength="200" />
+    </div> <canvas id="canvas" width="800" height="600"></canvas> <input type="text" id="chat_textbox" placeholder="Press enter to chat" maxlength="200" />
     <div style="font-family:'Ubuntu'">&nbsp;</div>
 </body>
-
 </html>
