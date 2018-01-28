@@ -360,11 +360,8 @@
         };
         wHandle.onresize = canvasResize;
         canvasResize();
-        if (wHandle.reqAnimFrame) {
-            wHandle.reqAnimFrame(redrawGameScene);
-        } else {
-            setInterval(drawScene, 1E3 / 60);
-        }
+        if (wHandle.reqAnimFrame) wHandle.reqAnimFrame(redrawGameScene);
+        else setInterval(drawScene, 1E3 / 60);
         setInterval(sendMouseMove, 40);
         null == ws && showConnecting();
         wjQuery("#overlays").show();
@@ -673,11 +670,11 @@
     function drawChatBoard() {
         chatCanvas = document.createElement("canvas");
         var ctx = chatCanvas.getContext("2d");
-        var scaleFactor = Math.min(Math.max(canvasWidth / 1200, 0.75), 1); // Scale factor = 0.75 to 1
+        var scaleFactor = Math.min(Math.max(canvasWidth / 1200, .75), 1); // Scale factor = .75 to 1
         chatCanvas.width = 1000 * scaleFactor;
         chatCanvas.height = 550 * scaleFactor;
         ctx.scale(scaleFactor, scaleFactor);
-        ctx.globalAlpha = 0.8;
+        ctx.globalAlpha = .8;
         var len = chatBoard.length;
         var from = len - 10; // Max amount of lines to display on a chat board
         if (from < 0) from = 0;
@@ -694,7 +691,7 @@
         }
     }
     function updateNodes(view, offset) {
-        timestamp = +new Date;
+        timestamp = +new Date();
         var code = Math.random();
         ua = 0;
         var queueLength = view.getUint16(offset, 1);
@@ -734,14 +731,14 @@
                 _skin = "";
             flags & 2 && (offset += 4);
             if (flags & 4) {
-                for (;;) { // skin name
+                for (;;) { // Skin name
                     var t = view.getUint8(offset, 1) & 0x7F;
                     offset += 1;
                     if (0 == t) break;
                     _skin += String.fromCharCode(t);
                 }
             }
-            for (var char, name = "";;) { // nick name
+            for (var char, name = "";;) { // Nick name
                 char = view.getUint16(offset, 1);
                 offset += 2;
                 if (0 == char) break;
@@ -888,13 +885,13 @@
         acidMode || ctx.clearRect(0, 0, canvasWidth, canvasHeight);
         if (acidMode) {
             if (showDarkTheme) {
-                ctx.fillStyle = '#111111';
-                ctx.globalAlpha = 0.07;
+                ctx.fillStyle = '#111';
+                ctx.globalAlpha = .07;
                 ctx.fillRect(0, 0, canvasWidth, canvasHeight);
                 ctx.globalAlpha = 1;
             } else {
                 ctx.fillStyle = '#F2FBFF';
-                ctx.globalAlpha = 0.07;
+                ctx.globalAlpha = .07;
                 ctx.fillRect(0, 0, canvasWidth, canvasHeight);
                 ctx.globalAlpha = 1;
             }
@@ -934,9 +931,7 @@
         if (chatCanvas != null && !hideChat) ctx.drawImage(chatCanvas, 0, canvasHeight - chatCanvas.height - 50); // Draw Chat Board
         userScore = Math.max(userScore, calcScore());
         if (0 != userScore) {
-            if (null == scoreText) {
-                scoreText = new UText(24, '#FFF');
-            }
+            if (null == scoreText) scoreText = new UText(24, '#FFF');
             if (showPosition) position = "  |  Position: " + nodeX.toFixed(0) + ", " + nodeY.toFixed(0);
             else var position = "";
             scoreText.setValue('Score: ' + ~~(userScore / 100) + position);
@@ -1034,7 +1029,7 @@
                 var ctx = lbCanvas.getContext("2d"),
                     boardLength = 60;
                 boardLength = null == teamScores ? boardLength + 24 * leaderBoard.length : boardLength + 180;
-                var scaleFactor = Math.min(0.22 * canvasHeight, Math.min(200, .3 * canvasWidth)) / 200;
+                var scaleFactor = Math.min(.22 * canvasHeight, Math.min(200, .3 * canvasWidth)) / 200;
                 lbCanvas.width = 200 * scaleFactor;
                 lbCanvas.height = boardLength * scaleFactor;
                 ctx.scale(scaleFactor, scaleFactor);
@@ -1103,28 +1098,24 @@
         var h = (Math.round(maxY) - 40 - y) / 5;
         ctx.save();
         ctx.beginPath();
-        ctx.lineWidth = 0.05;
+        ctx.lineWidth = .05;
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
-        ctx.font = w * 0.6 + "px Russo One";
+        ctx.font = w * .6 + "px Russo One";
         if (!String($("#sectorColor").val())) var color = "1A1A1A";
         else color = String($("#sectorColor").val());
         ctx.fillStyle = "#" + color;
         var j = 0;
         for (; 5 > j; j++) {
             var i = 0;
-            for (; 5 > i; i++) {
-                ctx.fillText(letter[j] + (i + 1), x + w * i + w / 2, y + h * j + h / 2);
-            }
+            for (; 5 > i; i++) ctx.fillText(letter[j] + (i + 1), x + w * i + w / 2, y + h * j + h / 2);
         }
         ctx.lineWidth = 100;
         ctx.strokeStyle = "#" + color;
         j = 0;
         for (; 5 > j; j++) {
             i = 0;
-            for (; 5 > i; i++) {
-                ctx.strokeRect(x + w * i, y + h * j, w, h);
-            }
+            for (; 5 > i; i++) ctx.strokeRect(x + w * i, y + h * j, w, h);
         }
         ctx.stroke();
         ctx.restore();
@@ -1331,7 +1322,7 @@
             }
         }
     }, 15000);
-    var delay = 500,
+    var delay = 500, // Animation delay (for non-smooth rendering instances)
         oldX = -1,
         oldY = -1,
         z = 1,
@@ -1465,9 +1456,7 @@
                         l = 1;
                     }
                     if (l) {
-                        if (0 < pointsacc[j]) {
-                            (pointsacc[j] = 0);
-                        }
+                        if (0 < pointsacc[j]) (pointsacc[j] = 0);
                         pointsacc[j] -= 1;
                     }
                 }
@@ -1489,9 +1478,8 @@
             a = 0 > a ? 0 : 1 < a ? 1 : a;
             var b = 0 > a ? 0 : 1 < a ? 1 : a;
             this.getNameSize();
-            if (this.destroyed && 1 <= b) {
+            if (this.destroyed && 1 <= b)
                 var c = Cells.indexOf(this); - 1 != c && Cells.splice(c, 1);
-            }
             this.x = a * (this.nx - this.ox) + this.ox;
             this.y = a * (this.ny - this.oy) + this.oy;
             this.size = b * (this.nSize - this.oSize) + this.oSize;
