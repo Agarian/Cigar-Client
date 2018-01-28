@@ -48,5 +48,5 @@ A heavily modified agar.io client.
 - Then type in the following: `setServer("serverIP:port")`.
 - The client also has this tutorial at the bottom of the overlay.
 
-### Screen-Shot
+### Screenshot (may add more later)
 ![_client](https://user-images.githubusercontent.com/23372586/35252035-74e6ebaa-ffac-11e7-9efc-3f1c150b38cf.png)
