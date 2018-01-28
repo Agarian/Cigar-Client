@@ -5,6 +5,7 @@ A heavily modified agar.io client.
 - I do not own any of the original client's code.
 - Find the original at https://github.com/CigarProject/Cigar
 - Some code was also pulled from https://github.com/Fan7asy/Client
+- If you cannot connect to your localhost server, it's likely because the github.io link enforces `wss://` (Secure WebSocket), which localhosts do not support. In that case, you will want to download the client itself.
 
 ### Brief description
  - This is a modified Agar.io client with many modifications!
@@ -12,7 +13,7 @@ A heavily modified agar.io client.
  - The client has relatively high performance.
  
 ### Additions to this client (with respect to CigarProject)
- - Show Cell Border: Shows a subtle dark border around a cell (from Agar.io).
+ - Show Cell Border: Shows a subtle dark border around the edge of a cell (from Agar.io).
  - Show Positon: Shows your position in a server's map.
  - Show Map Borders: Shows a line across the borders of a server's map.
  - Show Map Sectors: Shows sectors on a server's map.
@@ -26,10 +27,16 @@ A heavily modified agar.io client.
  - Cell Border Size: Lets you edit the size of the cell borders.
  - Infinite Zoom: Lets you zoom out as much as you want (mouse scroll).
   
+### Things I want to add (TO DO)
+- A minimap.
+- More performance efficient cell borders (for the `showCellBorder` option).
+- A working skins list (the current one doesn't work with an `https://`, or a `file:///` URL).
+- A list of popular private servers.
+  
 ### Other things
 - Show Grid was already in the client, though wouldn't work with the Dark Theme.
 - Hide Chat was broken in the client, until now.
-- Recommended page zoom is 75%.
+- Recommended page zoom is anywhere between 75% and 90%.
  
 ### Connecting to servers
 - Next to the name box, there is a drop down menu with 3 options:
