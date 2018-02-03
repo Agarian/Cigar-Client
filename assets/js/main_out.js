@@ -1072,7 +1072,6 @@
             }
         }
     }
-    
     function drawBorders() {
         if (!showBorders) return;
         ctx.save();
@@ -1376,9 +1375,7 @@
             Cells.push(this);
         },
         getNameSize: function() {
-            if (nameShadows) size = .45;
-            else var size = .3;
-            return Math.max(~~(size * this.size), 24);
+            return Math.max(~~(this.size / 3.2), 2);
         },
         setName: function(a) {
             this.name = a;
@@ -1603,6 +1600,8 @@
                         e = c.render();
                         w = ~~(e.width / ratio);
                         h = ~~(e.height / ratio);
+                        if (!this.name) var div = 2;
+                        else div = 3;
                         ctx.drawImage(e, ~~this.x - ~~(w / 2), b - ~~(h / 2), w, h);
                     }
                 }
