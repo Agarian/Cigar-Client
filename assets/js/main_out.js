@@ -943,7 +943,7 @@
             ctx.globalAlpha = 1;
             ctx.drawImage(c, 15, 15); //canvasHeight - 10 - 24 - 5
         }
-        //drawSplitIcon(ctx);
+        drawSplitIcon(ctx);
         drawTouch(ctx);
         var deltatime = Date.now() - oldtime;
         deltatime > 1E3 / 60 ? z -= .01 : deltatime < 1E3 / 65 && (z += .01);
@@ -1007,7 +1007,7 @@
         }
         ctx.restore();
     }
-    /*function drawSplitIcon(ctx) {
+    function drawSplitIcon(ctx) {
         if (isTouchStart && splitIcon.width) {
             var size = ~~(canvasWidth / 7);
             ctx.drawImage(splitIcon, canvasWidth - size, canvasHeight - size, size, size);
@@ -1016,7 +1016,7 @@
             size = ~~(canvasWidth / 7);
             ctx.drawImage(ejectIcon, canvasWidth - size, canvasHeight - 2 * size - 10, size, size);
         }
-    }*/
+    }
     function calcScore() {
         for (var score = 0, i = 0; i < playerCells.length; i++) score += playerCells[i].nSize * playerCells[i].nSize;
         return score;
@@ -1295,7 +1295,7 @@
     var data = {
         "action": "test"
     };
-    var response = null;
+    /*var response = null;
     wjQuery.ajax({
         type: "POST",
         dataType: "json",
@@ -1320,7 +1320,7 @@
                 knownNameDict.push(response[i]);
             }
         }
-    }, 15000);
+    }, 15000);*/
     var delay = 500, // Animation delay (for non-smooth rendering instances)
         oldX = -1,
         oldY = -1,
