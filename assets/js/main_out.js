@@ -1079,10 +1079,10 @@
         else ctx.strokeStyle = "#" + String($("#borderColor").val());
         ctx.lineWidth = 20;
         ctx.beginPath();
-        ctx.moveTo(minX - 30, minY - 30);
-        ctx.lineTo(maxX - 30, minY - 30);
-        ctx.lineTo(maxX - 30, maxY + 30);
-        ctx.lineTo(minX - 30, maxY + 30);
+        ctx.moveTo(minX, minY);
+        ctx.lineTo(maxX, minY);
+        ctx.lineTo(maxX, maxY);
+        ctx.lineTo(minX, maxY);
         ctx.closePath();
         ctx.stroke();
         ctx.restore();
@@ -1090,11 +1090,11 @@
     function drawSectors() {
         if (!showSectors) return;
         ctx.strokeRect(minX, maxY, 500, 500);
-        var x = Math.round(minX) + 40;
-        var y = Math.round(minY) + 40;
+        var x = Math.round(minX) + 65;
+        var y = Math.round(minY) + 65;
         var letter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-        var w = (Math.round(maxX) - 90 - x) / 5;
-        var h = (Math.round(maxY) - 40 - y) / 5;
+        var w = (Math.round(maxX) - 65 - x) / 5;
+        var h = (Math.round(maxY) - 65 - y) / 5;
         ctx.save();
         ctx.beginPath();
         ctx.lineWidth = .05;
