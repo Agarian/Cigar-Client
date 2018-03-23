@@ -1,4 +1,4 @@
-# agarian.github.io
+# Cigar-Agarian
 A heavily modified agar.io client.
 
 ### DISCLAIMER
