@@ -1,5 +1,6 @@
 # Cigar-Agarian
 A heavily modified agar.io client.
+*Due to running into another, more performance efficient client, this one will no longer be updated.*
 
 ### DISCLAIMER
 - I do not own any of the original client's code.
