@@ -1089,7 +1089,7 @@
     }
     function drawSectors() {
         if (!showSectors) return;
-        ctx.strokeRect(minX, maxY, 500, 500);
+        //ctx.strokeRect(minX, maxY, 500, 500);
         var x = Math.round(minX) + 65;
         var y = Math.round(minY) + 65;
         var letter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
